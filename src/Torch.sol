@@ -39,7 +39,7 @@ contract Torch is ERC721("Torch", unicode"🔥"), Ownable, ReentrancyGuard {
     }
 
     function _getHTML() internal view returns (string memory) {
-        return TorchURI.renderHTML();
+        return TorchURI.renderHTML(address(this));
     }
 
     function tokenURI(uint256 id) public view override returns (string memory) {
