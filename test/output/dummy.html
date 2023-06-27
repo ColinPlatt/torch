@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #1C2833;
+            color: #ffffff;
+            font-family: monospace;
+        }
+        button {
+            background-color: rgb(103, 103, 109);
+            color: #ffffff;
+            border: inset 1px #ffffffb3 1px 1px;
+            padding: 8px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .title-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            margin-left: -10px;
+            margin-right: -10px;
+            box-shadow: 0 10px 10px 0px rgba(70, 80, 90, 1);
+        }
+        .red-dot {
+            height: 10px;
+            width: 10px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .body-container {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .box {
+            padding: 10px;
+            margin: 10px;
+        }
+        .left-box-inner {
+            width: 360px; /* Fix the width */
+            box-shadow: 0px 0px 10px 10px rgba(70, 80, 90, 1); 
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #pass-torch-button {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        #svg-box {
+            height: 580px;
+        }
+        #history-box {
+            overflow-y: scroll;
+            width: 400px;
+            height: calc(60vh - 140px);
+            border: 1px solid #ffffff;
+            box-shadow: 0px 0px 10px 10px rgba(70, 80, 90, 1); 
+        }
+
+        /* Change layout for wider screens */
+        @media (min-aspect-ratio: 1/1) {
+            .body-container {
+                flex-direction: row;
+            }
+            
+            .column {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="title-bar">
+        <h1>Torch 🔥</h1>
+        <div>
+            <span class="red-dot"></span>
+            <button id="connect-button">Connect Wallet</button>
+        </div>
+    </div>
+    <div class="body-container">
+        <div class="column">
+            <div class="box left-box-inner" id="pass-box">
+                <button id="pass-torch-button">Pass Torch</button>
+                <div id="amount-box">
+                    Pass fee: ____ ETH
+                </div>
+            </div>
+            <div class="box left-box-inner" id="svg-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 580"><defs><mask id="text-mask"><rect x="0" y="70" width="360" height="570" fill="white"/></mask></defs><style>text{font-family:monospace;font-size:12px; fill: #fff;}</style><style type="text/css"><![CDATA[@keyframes scroll{0%{transform:translateY(100%);}100%{transform:translateY(-300%);}}#scrolling-text{animation:scroll 45s linear infinite;font-family:monospace;fill:white;font-size:12px;text-anchor:left;}]]></style><rect width="360" height="580" rx="15" ry="15" fill="black"/><text x="15" y="20">Current Owner: </text><text x="20" y="35">0xd089Fd700F77Ef49b412574d92247535D126CBB5</text><text x="15" y="55" fill="#fff">Previous Owners:</text><g mask="url(#text-mask)"><g id="scrolling-text"><text x="20" y="70">0x15112Cd11cf260eA104dA12029E39bCE9D290234</text><text x="20" y="85">0xcc387d7d8f2A4647870064cBB4b770b5d64f67f5</text><text x="20" y="100">0x442d194185d60eD6E846E5dE72e84056DCD6747e</text><text x="20" y="115">0xd663F774A6070b17429C2039E83cAFa54342037B</text><text x="20" y="130">0x61359F412A850d152312e5802C4E91AF9bc08fB3</text><text x="20" y="145">0x7fb73192c856b529AFad777EBb39CB51274e3dF4</text><text x="20" y="160">0xB5103048c7A736a4AdB5Dd2E1106f186d9c44de4</text><text x="20" y="175">0x11478aC7414C1e036AEc1ecA537E2D443E074694</text><text x="20" y="190">0x8191383FCD32Ac779e7868e99A3E5F1fbc60F098</text><text x="20" y="205">0x75473a9958727B673c4F784d89669F3b18f00CF4</text><text x="20" y="220">0x7c6bF7d59B25593cBfbcD9d5dF4Fc8773B0539BB</text><text x="20" y="235">0xDCB03E6e02bB04AE37B39fc5FD5f96Dc278A1c75</text><text x="20" y="250">0xfaB5859a674a61bA5903Ff19914BBfB80A4362d4</text><text x="20" y="265">0x6c060845C120386E9c6D23c02d1a799d4FbA218a</text><text x="20" y="280">0x94B26aE8a81daF616830E28aB76802E4542b1cAe</text><text x="20" y="295">0x3acA1802794866680304cd2D174b0a955AdC4ffA</text><text x="20" y="310">0xDD3223E74E7143ada56E16FEa8998363F1150E5B</text><text x="20" y="325">0xedB00f8309aAFDCC59782a37E2f198eDf486A385</text><text x="20" y="340">0x611C73816C3ef70a710414f2ACa68437C82F4b43</text><text x="20" y="355">0xA9E00eB85aE025376fb6B39304D74B417811905b</text><text x="20" y="370">0x1Bc49cfF53B66B1240cdA2B6ED0f26e3b23F204e</text><text x="20" y="385">0xe9289B43fCB619FAc51164998B2FcAED29D87fA3</text><text x="20" y="400">0xF6589119D9bafAC36f2fB8909940C61d46d9a4e7</text><text x="20" y="415">0x283D849993fbab75c413cD3bF3F2B8EaD20d8456</text><text x="20" y="430">0x3A332018d71118AD67CFbc4ED5a3Dfcdc04E8465</text><text x="20" y="445">0xf066Bd4FD731555d467e484580A4DD14Ca6B6c14</text><text x="20" y="460">0x4bDb7a9e6C10fA0A30630C29407bCA4248e4693C</text><text x="20" y="475">0x44e99E1af4A1b878624CD8298d03555CBBE4944D</text><text x="20" y="490">0x359cF0520e7C8D322D3044C1A931817663144dD9</text><text x="20" y="505">0xda0ABbaF21C6e527b775d4f5867C5a1033551337</text><text x="20" y="520">0x9b0F60c33911e1c8A284766a5DBF0eA904764F03</text><text x="20" y="535">0x4Bba7A90d040d2147cc43BcAb982b401f643ff01</text><text x="20" y="550">0x85ED8Ba4dB81946437c1676e661312103A4073D3</text><text x="20" y="565">0x8a22C4161a095E4b66Bec3cC6D95dDB65a8ca9FF</text><text x="20" y="580">0xac7255Fa48cFFC37948A37353c31aCDb321cF27E</text><text x="20" y="595">0x737C00Df491cbEE94f9288eB7D6Bf71ecf888920</text><text x="20" y="610">0x95a5b9496D42087A600F36110DA8E76825909215</text><text x="20" y="625">0x3d91055b9B0F72Bb97905a7131C756A4b99080bA</text><text x="20" y="640">0xe009C5a956DCf25054bc9e37CaC58bd74E3e4dbA</text><text x="20" y="655">0x972acd69E2B8a5BccB787853A7fA7534fF48B13B</text><text x="20" y="670">0xadF49c7ADDb83B93834a79743cf2079CaF1FbDad</text><text x="20" y="685">0x41F0dfe4Cb1807b9F34CBc0ace311272082d72Ba</text><text x="20" y="700">0x79fbE80163D34C501410B01C003Edea51f66c6E9</text><text x="20" y="715">0xb8c55f0E5B7a9d2018acd2Bac4F3d67cBe54a5Ca</text><text x="20" y="730">0x8854D0430ec52173b0e61Ad243C301447FcDd15b</text><text x="20" y="745">0x882A8aa94D2D1b2F306B0c3b6f7e52a54A601481</text><text x="20" y="760">0xc7347494Ac064d85e77462DB7EE9e6B665834D9c</text><text x="20" y="775">0xAB46C2A4eDe6B039513bcE3f3beC0310E664a3C3</text><text x="20" y="790">0xaD220992d0fbad42a1F27174A1bD4De97b484F1F</text><text x="20" y="805">0xd1d2c8C67E7ecF8eB4C49587128c22B0b805ee0a</text><text x="20" y="820">0x3474e772FeA1Fb2BCE354b15B6ca1a406C492B2F</text><text x="20" y="835">0x79c5FF17b85A829446104D8EA72e68df1e543B5F</text><text x="20" y="850">0xC5ACdf80dd7765875d22a444FADf4fb2048D67B6</text><text x="20" y="865">0x3F1E18CC49A9bF9b0E2Ce6E0BA8111dB57eB1097</text><text x="20" y="880">0x58E635Ead359b91E29C144732EC8eE9B65750eDb</text><text x="20" y="895">0x26E97Ab49E67E7709A240d03ad4f3fA223325EAE</text><text x="20" y="910">0x3f71a0Ad31c56BF2656ab232B54e8A58dB4C49f9</text><text x="20" y="925">0x6769eA3b7e1157893144138d0b45A0f63484117d</text><text x="20" y="940">0x8291a7bA33b2C56a57D944e5C7d0B8652402D19A</text><text x="20" y="955">0x7DeeF4b342c4476637F671881BB69cC7d81d286a</text><text x="20" y="970">0x1b1DE1D698Aad5f4A51F703373a20E8369701D79</text><text x="20" y="985">0xb1Fad83Df555F891470A10B04D5D641E6c74e1C8</text><text x="20" y="1000">0xCA66e20782853418760F5EC85CD95A2e40eca354</text><text x="20" y="1015">0x09FB4f04Fe01Cd7B6fDf2147Ec210E17319f5FaC</text><text x="20" y="1030">0x003f64E78eC8C01d79374472caa768B1be9A509a</text><text x="20" y="1045">0xe160d5c33188d05879a3A10C9dBD44F1dC2f8eA9</text><text x="20" y="1060">0xB1CCc5B1cAE222d065721606f9ee48a22341bD81</text><text x="20" y="1075">0xBA86E157EDD2b622E82739Ea41615429178220bc</text><text x="20" y="1090">0x3100454b61be29008Fd0455D8915B05512A6294E</text><text x="20" y="1105">0xF6beF006079f9EAB4707452453D87Bb5da3cDfBD</text><text x="20" y="1120">0x80606bBaDc204d7DB305565C39B389517e3CbCB0</text><text x="20" y="1135">0x9664a726767e75a087E0f78B9bDf74A59249d787</text><text x="20" y="1150">0xbB875717c76ca3e79Be579E1f1C9FE052c8B78a3</text><text x="20" y="1165">0x325934f3CaC6149A1C6c8aA2C73b716d402B37Bb</text><text x="20" y="1180">0x3e86Dfd3b790c3D3f1033003f2d5Ba11250Ed74d</text><text x="20" y="1195">0x279Ac9f82e34267cB144aF994A89d4cfDE930d33</text><text x="20" y="1210">0xDC95b21Db56D59Cc640E48A388041D80483c54D2</text><text x="20" y="1225">0x1A552D9a2cF7E6f63A8c5d731Aa68a2Dc7f13f84</text><text x="20" y="1240">0x2294bb40470dd3E6B1103Cf077c95a463Fc3013E</text><text x="20" y="1255">0x94699686eCaFA239FE1faD1F3F515D02fb0484E5</text><text x="20" y="1270">0x8EbAB26b10A3b29e14D274715e3f8B489B65C7A1</text><text x="20" y="1285">0xd05105e9e39232236160166c16f4133BF81fE78C</text><text x="20" y="1300">0xbD16396e2b418C4ec8f2eea1Fd7Fd79e6F1DfADD</text><text x="20" y="1315">0x77efFA8DfDf245FEC2D5a98C4aE9c351EAF1EB14</text><text x="20" y="1330">0x053977bBdC036A98809001Ff2Ad790C32E74C0eA</text><text x="20" y="1345">0x84Ae579e551Ea63EfE1b9b528466316D9c5586EA</text><text x="20" y="1360">0x0A0531172767F5967425A8ab6896B0C9c9aa6be0</text><text x="20" y="1375">0x49906893A38eD5a2891ad135312FED362bdbD753</text><text x="20" y="1390">0xD44c7171a8c98B730f2D1e6f9FE84B021fD06fA2</text><text x="20" y="1405">0x2cDB0Fc7B9974eD9261565dc377383528eFA08AC</text><text x="20" y="1420">0x731C935e76B824001f7802380242fACA856A22a0</text><text x="20" y="1435">0xd2a7603c7A6d674D9Ebcc4e3d45403e944f73E42</text><text x="20" y="1450">0x55546A57f0a91DCF28e9aDf28661752eBa61052c</text><text x="20" y="1465">0x50398193728165Bf6F203f5cF5112c37b443D101</text><text x="20" y="1480">0x10376E3478aC9D6356a8873DeBA51bc1D9221208</text><text x="20" y="1495">0xaC13bD7fe4666E0D948f9990F36151FfE2fF50c5</text><text x="20" y="1510">0xF3e0A34E4857Cc566A4c186775744132cF399ae8</text><text x="20" y="1525">0x84e8Fa4B743FA3F89e0410C41AAf375dba5E8D28</text><text x="20" y="1540">0x4f532E7e0392f8553b620538f25280B99D95e7d6</text><text x="20" y="1555">0xc952D8bD186b4Dfba54c9784D515719E82195298</text></g></g></svg>
+            </div>
+        </div>
+        <div class="column">
+            <h2>Past owners</h2>
+            <div class="box" id="history-box"></div>
+        </div>
+    </div>
+</body>
+</html>

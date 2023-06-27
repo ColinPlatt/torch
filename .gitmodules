@@ -4,3 +4,9 @@
 [submodule "lib/solady"]
 	path = lib/solady
 	url = https://github.com/Vectorized/solady
+[submodule "lib/solmate"]
+	path = lib/solmate
+	url = https://github.com/Transmissions11/solmate
+[submodule "lib/ethers.sol"]
+	path = lib/ethers.sol
+	url = https://github.com/ColinPlatt/ethers.sol
