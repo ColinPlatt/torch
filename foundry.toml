@@ -9,5 +9,6 @@ fs_permissions = [
     { access = "read-write", path = "./test/output/"}
 ]
 chainId = 5
+etherscan_api_key = "VVX41BW4M4AGGJY2VFHNQM4IJVJRRBT3I6"
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config

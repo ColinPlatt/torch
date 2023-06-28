@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "forge-std/Test.sol";
+import "lib/forge-std/src/Test.sol";
 import "../src/Torch.sol";
 
 
@@ -38,17 +38,29 @@ contract TorchTest is Test {
     }
 
     function testSVG() public {
-        string memory svg = nft.tokenURI(1);
+        string memory svg = nft.getSVG();
 
         emit log_named_string("svg", svg);
     }
 
     function testHTML() public {
 
-        string memory result = nft.tokenURI(0);
+        string memory result = nft.getHTML();
 
         //emit log_named_string("website", result);
         vm.writeFile("test/output/renderedSite.html", result);
+    }
+
+    function testURI0() public {
+
+        vm.writeFile("test/output/tokenUri0.txt", nft.tokenURI(0));
+
+    }
+
+    function testURI1() public {
+
+        vm.writeFile("test/output/tokenUri1.txt", nft.tokenURI(1));
+
     }
 
 }

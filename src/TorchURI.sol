@@ -84,7 +84,7 @@ library TorchURI {
                 'from: connectedAccount,'
                 'to: "', LibString.toHexString(address(this)), '",'
                 'value: "', ExtLibString.toMinimalHexString(_passValue), '",'
-                'data: "', LibString.toHexString(abi.encodeWithSignature("function passTorch() public payable")),
+                'data: "', LibString.toHexString(abi.encodeWithSignature("passTorch()")),
             '"}'
         );
     }
@@ -135,7 +135,7 @@ library TorchURI {
     function renderHTML(uint256 passValue, address[] memory previousOwners, address currentOwner) internal view returns (string memory) {
         return HTML.html(string.concat(
             HTML.head(string.concat(
-                HTML.title(unicode"Torch 🔥 - Interface"),
+                HTML.title("Torch - Interface"),
                 HTML.style(_getCSS())
             )),
             _getBody(passValue, previousOwners, currentOwner)

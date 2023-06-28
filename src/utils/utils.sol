@@ -5,7 +5,7 @@ import "lib/solady/src/utils/LibString.sol";
 
 library ExtLibString {
 
-    function toMinimalHexString(uint256 value) public pure returns (string memory str) {
+    function toMinimalHexString(uint256 value) internal pure returns (string memory str) {
         str = LibString.toHexStringNoPrefix(value);
 
         /// @solidity memory-safe-assembly

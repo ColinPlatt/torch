@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import {Ownable, SafeTransferLib} from "lib/solady/src/Milady.sol";
+import {Ownable, SafeTransferLib, Base64} from "lib/solady/src/Milady.sol";
 import {ERC721, ERC721TokenReceiver} from "lib/solmate/src/tokens/ERC721.sol";
 import {ReentrancyGuard} from "lib/solmate/src/utils/ReentrancyGuard.sol";
+import {json} from "./utils/JSON.sol";
 
 import {TorchURI} from "./TorchURI.sol";
 
@@ -25,7 +26,7 @@ contract Torch is ERC721("Torch", unicode"🔥"), Ownable, ReentrancyGuard {
     }
 
 
-    function _getSVG() internal view returns (string memory) {
+    function getSVG() public view returns (string memory) {
         uint256 len = pastOwners.length > 100 ? 100 : pastOwners.length;
         
         address[] memory previousOwners = new address[](len);
@@ -38,7 +39,7 @@ contract Torch is ERC721("Torch", unicode"🔥"), Ownable, ReentrancyGuard {
         return TorchURI.renderSVG(previousOwners, ownerOf(1));
     }
 
-    function _getHTML() internal view returns (string memory) {
+    function getHTML() public view returns (string memory) {
         uint256 len = pastOwners.length > 100 ? 100 : pastOwners.length;
         
         address[] memory previousOwners = new address[](len);
@@ -51,9 +52,27 @@ contract Torch is ERC721("Torch", unicode"🔥"), Ownable, ReentrancyGuard {
         return TorchURI.renderHTML(passAmt, previousOwners, ownerOf(1));
     }
 
+    string constant description = "Torch is a social experiment in NFTs. The torch is passed from one owner to the next, increasing in value each time. The torch is a standard ERC721 NFT, but it also has a UI NFT that displays the torch's current owner and value. The UI NFT is minted to the torch's owner each time the torch is passed.";
+
+    function getHTMLJson() public view returns (string memory) {
+        return json.formattedMetadataHTML(
+            unicode"Torch 🔥",
+            description,
+            getHTML()
+        );
+    }
+
+    function getSVGJson() public view returns (string memory) {
+        return json.formattedMetadata(
+            unicode"Torch 🔥",
+            description,
+            getSVG()
+        );
+    }
+
     function tokenURI(uint256 id) public view override returns (string memory) {
-        if(id == 0) return _getHTML();
-        if(id == 1) return _getSVG();
+        if(id == 0) return getHTMLJson();
+        if(id == 1) return getSVGJson();
         revert INVALID_TOKEN_ID();        
     }
 
