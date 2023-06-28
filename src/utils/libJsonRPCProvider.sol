@@ -60,6 +60,24 @@ library jsonRPCProvider {
             return _typeString;
     }
 
+    enum blockTag { earliest, finalized, safe, latest, pending }
+
+    function _blockTagToString(blockTag _tag) internal pure returns (string memory) {
+            string memory _tagString;
+            if(_tag == blockTag.earliest) {
+                _tagString = 'earliest';
+            } else if(_tag == blockTag.finalized) {
+                _tagString = 'finalized';
+            } else if(_tag == blockTag.safe) {
+                _tagString = 'safe';
+            } else if(_tag == blockTag.latest) {
+                _tagString = 'latest';
+            } else if(_tag == blockTag.pending) {
+                _tagString = 'pending';
+            }
+            return _tagString;
+    }
+
     function eth_subscribe(subscriptionType _type) internal pure returns (string memory) {
         return _request('eth_subscribe', string.concat(_subscriptionTypeToString(_type), ', null'));
     }
@@ -78,6 +96,10 @@ library jsonRPCProvider {
 
     function eth_sendTransaction(Transaction memory _transaction) internal pure returns (string memory) {
         return _request('eth_sendTransaction', _transaction.read());
+    }
+
+    function eth_sendTransaction(string memory _transaction) internal pure returns (string memory) {
+        return _request('eth_sendTransaction', _transaction);
     }
 
     //eth_getBlockByHash
@@ -143,7 +165,14 @@ library jsonRPCProvider {
     function eth_estimateGas(Transaction memory _transaction, uint256 _blockNumber) internal pure returns (string memory) {
         return _request('eth_estimateGas', string.concat(_transaction.read(), ',"', _blockNumber.toHexString(), '"'));
     }
-    //@todo by block tag
+    
+    function eth_estimateGas(Transaction memory _transaction, blockTag _blockTag) internal pure returns (string memory) {
+        return _request('eth_estimateGas', string.concat(_transaction.read(), ',"', _blockTagToString(_blockTag), '"'));
+    }
+
+    function eth_estimateGas(string memory _transaction, blockTag _blockTag) internal pure returns (string memory) {
+        return _request('eth_estimateGas', string.concat(_transaction, ',"', _blockTagToString(_blockTag), '"'));
+    }
 
     //eth_gasPrice
     function eth_gasPrice() internal pure returns (string memory) {
@@ -299,6 +328,10 @@ library jsonRPCProvider {
     //eth_getTransactionReceipt
     function eth_getTransactionReceipt(bytes32 _hash) internal pure returns (string memory) {
         return _request('eth_getTransactionReceipt', string.concat('"', uint256(_hash).toHexString(), '"'));
+    }
+
+    function eth_getTransactionReceipt(string memory _variableName) internal pure returns (string memory) {
+        return _request('eth_getTransactionReceipt', _variableName);
     }
 
 

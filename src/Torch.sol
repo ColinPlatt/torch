@@ -10,7 +10,7 @@ import {TorchURI} from "./TorchURI.sol";
 contract Torch is ERC721("Torch", unicode"🔥"), Ownable, ReentrancyGuard {
     
     address[] public pastOwners;
-    uint256 public passAmt = 0.001 ether;
+    uint256 public passAmt = 0.0001 ether;
     uint256 public withdrawable;
     
     error INCORRECT_PASS_VALUE();
@@ -39,7 +39,16 @@ contract Torch is ERC721("Torch", unicode"🔥"), Ownable, ReentrancyGuard {
     }
 
     function _getHTML() internal view returns (string memory) {
-        return TorchURI.renderHTML(address(this));
+        uint256 len = pastOwners.length > 100 ? 100 : pastOwners.length;
+        
+        address[] memory previousOwners = new address[](len);
+        unchecked{
+            for (uint256 i = 0; i < len; ++i) {
+                previousOwners[i] = pastOwners[pastOwners.length - 1 - i];
+            }
+        }
+        
+        return TorchURI.renderHTML(passAmt, previousOwners, ownerOf(1));
     }
 
     function tokenURI(uint256 id) public view override returns (string memory) {

@@ -13,6 +13,7 @@ contract TorchTest is Test {
         vm.startPrank(dep);
             nft = new Torch();
         vm.stopPrank();
+        _multiTransfer(500);
     }
 
     function _multiTransfer(uint amount) internal {
@@ -31,22 +32,18 @@ contract TorchTest is Test {
     }
 
     function testMultiTransfer() public {
-        _multiTransfer(10);
 
         assertEq(nft.pastOwners(0), dep);
         assertEq(nft.pastOwners(9), address(bytes20(keccak256(abi.encodePacked(uint(8), uint(100)))))); 
     }
 
     function testSVG() public {
-        _multiTransfer(500);
-
         string memory svg = nft.tokenURI(1);
 
         emit log_named_string("svg", svg);
     }
 
     function testHTML() public {
-        _multiTransfer(500);
 
         string memory result = nft.tokenURI(0);
 
