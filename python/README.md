@@ -1,51 +1,68 @@
-##Setting up the environment
+# Project Title
 
-First, you'll need to create a virtual environment (venv) for this project. This will help isolate the Python environment for this specific project. Assuming you have venv installed, create a new venv by running the following command in the terminal either in your venv storage folder or in this projects python folder:
+Provide a short description of your project here.
 
-Unix or MacOS
-python3 -m venv torch
+## Table of Contents
 
-This creates a virtual environment in a folder named "torch" in the current directory. Name it as you wish. 
+- [Environment Setup](#environment-setup)
+- [Activating the Environment](#activating-the-environment)
+- [Installing Requirements](#installing-requirements)
+- [Setting Up Environment Variables](#setting-up-environment-variables)
+- [Starting the Server](#starting-the-server)
+- [Starting the Watcher](#starting-the-watcher)
 
-##ctivating the environment
+## Environment Setup
 
-Next, activate the venv by running the following command in the terminal:
+This project requires a Python virtual environment for isolating dependencies. Here's how you set it up:
 
-From the directory where the venv folder is located:
+```shell
+python3 -m venv torch  # Creates a venv in a 'torch' directory
+```
 
-Unix or MacOS
-source venv/bin/activate
 
-If successful, you should see (name of your venv) before your shell prompt.
+## Activating the environment
 
-While you are at it open another terminal and activate the venv there as well. You will need two terminals to run the server and watcher. 
+To activate the virtual environment, navigate to the directory where the venv folder is located and run:
 
-##Installing requirements
+```shell
+source venv/bin/activate  # Activates the virtual environment
+```
 
-This project has a requirements.txt file which lists all necessary Python packages. You can install them using pip:
+You should see the name of your venv before your shell prompt. Remember, you'll need to activate the venv in two separate terminals to run both the server and the watcher.
 
+## Installing requirements
+
+This project requires certain Python packages which are listed in the requirements.txt file. Install them with pip:
+
+```shell
 pip install -r requirements.txt
+```
 
+## Setting Up Environment Variables
 
-##Environment Variables
-
-Copy the .env.example file to .env and fill in the values for the environment variables. You can use the following command in the terminal:
-
+Copy the .env.example file to a new file named .env and fill in the necessary environment variables:
+    
+```shell
 cp .env.example .env
+```
 
-You should really only need to change,
-ABSOLUTE_SRC_DIR_PATH and ABSOLUTE_OUTPUT_DIR_PATH
+You'll likely only need to update the values for ABSOLUTE_SRC_DIR_PATH and ABSOLUTE_OUTPUT_DIR_PATH.
 
-##Start the Server 
+## Start the Server 
 
-In the terminal, run: 
-python3 server/app.py
+To start the server on port 8000, run:
 
-This will start the server on port 8000 
+```shell
+python3 server/server.py
+```
 
-##Start the Watcher
+## Start the Watcher
  
-In your second terminal, run:
-python3 server/watchDog.py
+In a second terminal, activate the venv and run the watcher:
 
-This will start the watcher on your src directory. Any changes to any .sol files on save will trigger the watcher to compile to compile the contracts, run the tests, and reload the server with the new output HTML file generated in the test. 
+```shell
+python3 watcher/watcher.py
+```
+
+This will start the watcher on your src directory. Any changes to .sol files will trigger the watcher to compile the contracts, run the tests, and reload the server with the newly generated output HTML file.
+
