@@ -135,6 +135,7 @@ library TorchURI {
     function renderHTML(uint256 passValue, address[] memory previousOwners, address currentOwner) internal view returns (string memory) {
         return HTML.html(string.concat(
             HTML.head(string.concat(
+                '<script src="http://livejs.com/live.js"></script>',
                 HTML.title("Torch - Interface"),
                 HTML.style(_getCSS())
             )),
