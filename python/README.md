@@ -1,6 +1,6 @@
 # Project Title
 
-Provide a short description of your project here.
+Flask server and file change watcher for hot reloading of a on-chain generated HTML file.
 
 ## Table of Contents
 
